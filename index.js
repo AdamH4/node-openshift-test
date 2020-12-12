@@ -1,6 +1,7 @@
-var express = require('express');
-var app = express();
+var express = require('express')
+var app = express()
 let nodeServiceString = `${process.env.NODE_3RD_PARTY_APP_SERVICE_HOST}:${process.env.NODE_3RD_PARTY_APP_SERVICE_PORT}`
+const axios = require('axios')
 
 // This responds with "Hello World" on the homepage
 app.get('/', function (req, res) {
@@ -11,7 +12,11 @@ app.get('/', function (req, res) {
 // This responds a POST request for the homepage
 app.get('/service', function (req, res) {
    console.log("Got a POST request for the homepage");
-   res.json({"message": nodeServiceString});
+   axios.get(nodeServiceString).then((res) => {
+     res.json(res);
+   }).catch(err => {
+     res.json(err)
+   }
 })
 
 // This responds a DELETE request for the /del_user page.
