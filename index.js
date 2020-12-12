@@ -9,7 +9,7 @@ app.get('/', function (req, res) {
 })
 
 // This responds a POST request for the homepage
-app.post('/service', function (req, res) {
+app.get('/service', function (req, res) {
    console.log("Got a POST request for the homepage");
    res.json({"message": nodeServiceString});
 })
