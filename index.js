@@ -11,9 +11,9 @@ app.get('/', function (req, res) {
 
 // This responds a POST request for the homepage
 app.get('/service', async function (req, res) {
-   console.log("Got a POST request for the homepage");
+   let response
    try{
-     let response = await axios.get(`http://${nodeServiceString}`)
+     response = await axios.get(`http://${nodeServiceString}`)
    }catch(err){
      res.json(err)
    }
