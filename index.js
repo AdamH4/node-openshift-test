@@ -11,13 +11,13 @@ app.get('/', function (req, res) {
 
 // This responds a POST request for the homepage
 app.get('/service', async function (req, res) {
-   let response
+   let response = {}
    try{
      response = await axios.get(`http://${nodeServiceString}`)
    }catch(err){
      res.json(err)
    }
-   res.json(response)
+   res.json(JSON.stringify(response))
 })
 
 // This responds a DELETE request for the /del_user page.
