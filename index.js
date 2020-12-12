@@ -16,7 +16,7 @@ app.get('/service', function (req, res) {
      res.json(res);
    }).catch(err => {
      res.json(err)
-   }
+   })
 })
 
 // This responds a DELETE request for the /del_user page.
