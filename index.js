@@ -1,5 +1,6 @@
 var express = require('express');
 var app = express();
+let nodeServiceString = `${process.env.NODE_3RD_PARTY_APP_SERVICE_HOST}:${process.env.NODE_3RD_PARTY_APP_SERVICE_PORT}`
 
 // This responds with "Hello World" on the homepage
 app.get('/', function (req, res) {
@@ -8,9 +9,9 @@ app.get('/', function (req, res) {
 })
 
 // This responds a POST request for the homepage
-app.post('/', function (req, res) {
+app.post('/service', function (req, res) {
    console.log("Got a POST request for the homepage");
-   res.send('Hello POST');
+   res.json({"message": nodeServiceString});
 })
 
 // This responds a DELETE request for the /del_user page.
