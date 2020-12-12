@@ -10,13 +10,10 @@ app.get('/', function (req, res) {
 })
 
 // This responds a POST request for the homepage
-app.get('/service', function (req, res) {
+app.get('/service', async function (req, res) {
    console.log("Got a POST request for the homepage");
-   axios.get(nodeServiceString).then((res) => {
-     res.json(res);
-   }).catch(err => {
-     res.json(err)
-   })
+   let response = await axios.get(nodeServiceString)
+   res.json(response)
 })
 
 // This responds a DELETE request for the /del_user page.
