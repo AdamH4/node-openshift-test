@@ -17,6 +17,7 @@ app.get('/service', async function (req, res) {
    }catch(err){
      res.json(err)
    }
+   console.log(response)
    console.log(response.data)
    console.log(JSON.parse(response.data))
    console.log(JSON.stringify(response.data))
