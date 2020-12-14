@@ -19,9 +19,8 @@ app.get('/service', async function (req, res) {
    }
    console.log(response)
    console.log(response.data)
-   console.log(JSON.parse(response.data))
    console.log(JSON.stringify(response.data))
-   res.json(JSON.stringify(response.data))
+   res.json(response.data)
 })
 
 // This responds a DELETE request for the /del_user page.
