@@ -1,7 +1,14 @@
 var express = require('express')
 var app = express()
 let nodeServiceString = `${process.env.NODE_3RD_PARTY_APP_SERVICE_HOST}:${process.env.NODE_3RD_PARTY_APP_SERVICE_PORT}`
+const redditApi = `https://reddit.com/r/`
 const axios = require('axios')
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+})
 
 // This responds with "Hello World" on the homepage
 app.get('/', function (req, res) {
@@ -20,8 +27,20 @@ app.get('/service', async function (req, res) {
    res.json(response.data)
 })
 
+app.get('/reddit/:subreddit', async function (req,res){
+  let response
+  try{
+    response = await axios.get(`${redditApi}${req.params.subreddit}.json`)
+  }catch(e){
+    res.json(e)
+  }
+  console.log(response.data.data.children.length)
+  res.status(200).send(response.data.data.children)
+})
 // This responds a DELETE request for the /del_user page.
 app.delete('/del_user', function (req, res) {
+
+   let response
    console.log("Got a DELETE request for /del_user");
    res.send('Hello DELETE');
 })
