@@ -10,13 +10,25 @@ app.use(function(req, res, next) {
   next();
 })
 
-// This responds with "Hello World" on the homepage
+/*
+ * @api [get] /
+ * description: Greeting from server
+ * responses:
+ *   200:
+ *     description: Greeting message.
+ */
 app.get('/', function (req, res) {
    console.log("Got a GET request for the homepage");
    res.json({"message" : "Hello GET / route"});
 })
 
-// This responds a POST request for the homepage
+/*
+ * @api [get] /service
+ * description: Call another pod in Openshift cluster(like middleware)
+ * responses:
+ *   200:
+ *     description: Response from pod.
+ */
 app.get('/service', async function (req, res) {
    let response = {}
    try{
