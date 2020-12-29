@@ -39,6 +39,13 @@ app.get('/service', async function (req, res) {
    res.json(response.data)
 })
 
+/*
+ * @api [get] /reddit/:subreddit
+ * description: Call specific subreddit and return data from it
+ * responses:
+ *   200:
+ *     description: Data from subreddit.
+ */
 app.get('/reddit/:subreddit', async function (req,res){
   let response
   try{
