@@ -38,25 +38,7 @@ app.get('/reddit/:subreddit', async function (req,res){
   res.status(200).send(response.data.data.children)
 })
 // This responds a DELETE request for the /del_user page.
-app.delete('/del_user', function (req, res) {
 
-   let response
-   console.log("Got a DELETE request for /del_user");
-   res.send('Hello DELETE');
-})
-
-// This responds a GET request for the /list_user page.
-app.get('/list_user', function (req, res) {
-   console.log("Got a GET request for /list_user");
-   res.send('Page Listing');
-})
-
-// This responds a GET request for abcd, abxcd, ab123cd, and so on
-app.get('/ab*cd', function(req, res) {   
-   console.log("Got a GET request for /ab*cd");
-   res.send('Page Pattern Match');
-})
-
-var server = app.listen(8080, function () {
+app.listen(8080, function () {
    console.log("Example app listening at port 8080")
 })
