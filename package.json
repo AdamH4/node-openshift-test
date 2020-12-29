@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "start": "node index.js",
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "docs": "swagger-inline ./*.js --base openapiBase.yaml > openapi.json"
   },
   "dependencies": {
     "axios": "^0.21.0",
