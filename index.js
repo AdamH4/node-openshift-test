@@ -4,6 +4,7 @@ let nodeServiceString = `${process.env.NODE_3RD_PARTY_APP_SERVICE_HOST}:${proces
 const redditApi = `https://reddit.com/r/`
 const axios = require('axios')
 
+app.use(express.static('public'))
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
@@ -56,7 +57,10 @@ app.get('/reddit/:subreddit', async function (req,res){
   console.log(response.data.data.children.length)
   res.status(200).send(response.data.data.children)
 })
-// This responds a DELETE request for the /del_user page.
+
+app.get("/api/docs", (req,res) => {
+  
+})
 
 app.listen(8080, function () {
    console.log("Example app listening at port 8080")
