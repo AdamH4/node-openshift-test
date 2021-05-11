@@ -1,6 +1,5 @@
 var express = require('express')
 var app = express()
-let nodeServiceString = `${process.env.NODE_3RD_PARTY_APP_SERVICE_HOST}:${process.env.NODE_3RD_PARTY_APP_SERVICE_PORT}`
 const redditApi = `https://reddit.com/r/`
 const axios = require('axios')
 
@@ -20,23 +19,6 @@ app.use(function (req, res, next) {
 app.get('/', function (req, res) {
   console.log("Got a GET request for the homepage");
   res.json({ "message": "Hello GET / route" });
-})
-
-/*
- * @api [get] /service
- * description: Call another pod in Openshift cluster(like middleware)
- * responses:
- *   200:
- *     description: Response from pod.
- */
-app.get('/service', async function (req, res) {
-  let response = {}
-  try {
-    response = await axios.get(`http://${nodeServiceString}`)
-  } catch (err) {
-    res.json(err)
-  }
-  res.json(response.data)
 })
 
 /*
