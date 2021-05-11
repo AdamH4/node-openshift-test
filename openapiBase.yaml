@@ -1,5 +1,0 @@
-openapi: 3.0.3
-info:
-  description: Testing app for bakalarsky project
-  version: 1.0.1
-  title: Openshift node pod

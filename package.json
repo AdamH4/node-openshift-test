@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "docs": "swagger-inline ./*.js --base openapiBase.yaml > openapi.json"
+    "docs": "swagger-inline ./*.js --base ../openapiBase.yaml > public/openapi.yaml"
   },
   "dependencies": {
     "axios": "^0.21.0",

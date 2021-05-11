@@ -4,8 +4,7 @@ let nodeServiceString = `${process.env.NODE_3RD_PARTY_APP_SERVICE_HOST}:${proces
 const redditApi = `https://reddit.com/r/`
 const axios = require('axios')
 
-app.use(express.static('public'))
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
   next();
@@ -19,8 +18,8 @@ app.use(function(req, res, next) {
  *     description: Greeting message.
  */
 app.get('/', function (req, res) {
-   console.log("Got a GET request for the homepage");
-   res.json({"message" : "Hello GET / route"});
+  console.log("Got a GET request for the homepage");
+  res.json({ "message": "Hello GET / route" });
 })
 
 /*
@@ -31,13 +30,13 @@ app.get('/', function (req, res) {
  *     description: Response from pod.
  */
 app.get('/service', async function (req, res) {
-   let response = {}
-   try{
-     response = await axios.get(`http://${nodeServiceString}`)
-   }catch(err){
-     res.json(err)
-   }
-   res.json(response.data)
+  let response = {}
+  try {
+    response = await axios.get(`http://${nodeServiceString}`)
+  } catch (err) {
+    res.json(err)
+  }
+  res.json(response.data)
 })
 
 /*
@@ -47,21 +46,21 @@ app.get('/service', async function (req, res) {
  *   200:
  *     description: Data from subreddit.
  */
-app.get('/reddit/:subreddit', async function (req,res){
+app.get('/reddit/:subreddit', async function (req, res) {
   let response
-  try{
+  try {
     response = await axios.get(`${redditApi}${req.params.subreddit}.json`)
-  }catch(e){
+  } catch (e) {
     res.json(e)
   }
   console.log(response.data.data.children.length)
   res.status(200).send(response.data.data.children)
 })
 
-app.get("/api/docs", (req,res) => {
-  
+app.get("/api/docs", (req, res) => {
+
 })
 
 app.listen(8080, function () {
-   console.log("Example app listening at port 8080")
+  console.log("Example app listening at port 8080")
 })
